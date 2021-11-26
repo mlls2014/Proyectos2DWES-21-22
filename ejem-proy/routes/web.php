@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +21,39 @@ Route::get('/', function () {
 /**
  * Código de prueba de los temas de clase
  */
-// Route::get('/mi-url', function () {
-//    return "Hola mundo:)";
-// });
+Route::get('/mi-url', function () {
+   return "Hola mundo:)";
+});
+
+Route::get('/libros', function () {
+   return view('libros');
+});
+
+Route::post('/libros', function (Request $request) {
+   $titulo = $request->input('titulo');
+   $autor = $request->input('autor');
+   return view('reglibro', array(
+      'titulo' => $titulo,
+      'autor' => $autor
+   ));
+});
+
+Route::get('/libros/{genero}', function ($genero) {
+   return "<h1>Libros del género: {$genero}</h1>";
+});
+
+Route::get('posts/{post_id}/comments/{comment_id}', function ($postId, $commentId) {
+   return "Este es el comentario $commentId del post $postId";
+});
+
+Route::get('/libros/{genero?}', function ($genero = null) {
+   if ($genero == null) {
+      return view('libros'); //muestra la lista 
+   }
+   return "Lista de libros del género: {$genero}";
+});
+
+
 
 // Route::get('user/{id}', function ($id) {
 //    return $id;
@@ -127,7 +158,7 @@ Route::get('/', function () {
 // });
 
 // CONTROLADORES
-use App\Http\Controllers\PeliculaController;
+// use App\Http\Controllers\PeliculaController;
 
 // Route::get('/peliculas', [PeliculaController::class, 'index']);
 
@@ -138,7 +169,7 @@ use App\Http\Controllers\PeliculaController;
  */
 // Route::get('/peliculas','App\Http\Controllers\PeliculaController@index');
 
-Route::get('/peliculas/{pagina?}', [PeliculaController::class, 'index']);
+// Route::get('/peliculas/{pagina?}', [PeliculaController::class, 'index']);
 
 
 // RESOURCES
@@ -146,19 +177,19 @@ Route::get('/peliculas/{pagina?}', [PeliculaController::class, 'index']);
 // Route::get('/foto/popular',[FotoController::class, 'getPopular']);
 // Route::resource('foto',FotoController::class);
 
-use App\Http\Controllers\UsuarioController;
+// use App\Http\Controllers\UsuarioController;
 
-Route::resource('usuarios', UsuarioController::class);
-Route::resource('usuarios', UsuarioController::class)->names([
-   'create' => 'usuarios.build'
-]);
-// Route::get('/detalle',[PeliculaController::class,'detalle']);
-// Para dar nombre a esa ruta
-Route::get('/detalle/{year?}', [PeliculaController::class, 'detalle'])
-   ->name('detalle.pelicula')
-   ->middleware('testyear');
+// Route::resource('usuarios', UsuarioController::class);
+// Route::resource('usuarios', UsuarioController::class)->names([
+//    'create' => 'usuarios.build'
+// ]);
+// // Route::get('/detalle',[PeliculaController::class,'detalle']);
+// // Para dar nombre a esa ruta
+// Route::get('/detalle/{year?}', [PeliculaController::class, 'detalle'])
+//    ->name('detalle.pelicula')
+//    ->middleware('testyear');
 
-Route::get('/redirigir', [PeliculaController::class, 'detalle']);
+// Route::get('/redirigir', [PeliculaController::class, 'detalle']);
 
 // Route::get('/detalle',[
 //    'uses' => [PeliculaController::class,'detalle'],
@@ -167,19 +198,19 @@ Route::get('/redirigir', [PeliculaController::class, 'detalle']);
 
 // FORMULARIOS 
 
-Route::get('/formulario', [PeliculaController::class,'formulario']);
-Route::post('/recibir', [PeliculaController::class,'recibir']);
+// Route::get('/formulario', [PeliculaController::class,'formulario']);
+// Route::post('/recibir', [PeliculaController::class,'recibir']);
 
 // BASE DE DATOS
 
-use App\Http\Controllers\FrutaController;
+// use App\Http\Controllers\FrutaController;
 
-Route::prefix('frutas')->group(function () {
-   Route::get('index',[FrutaController::class,'index']);
-   Route::get('detalle/{id}', [FrutaController::class, 'detalle']);
-   Route::get('crear',[FrutaController::class,'crear']);
-   Route::post('guardar',[FrutaController::class,'guardar']);
-   Route::get('eliminar/{id}',[FrutaController::class,'eliminar']);
-   Route::get('editar/{id}',[FrutaController::class,'editar']);
-   Route::post('update',[FrutaController::class,'update']);
-});
+// Route::prefix('frutas')->group(function () {
+//    Route::get('index',[FrutaController::class,'index']);
+//    Route::get('detalle/{id}', [FrutaController::class, 'detalle']);
+//    Route::get('crear',[FrutaController::class,'crear']);
+//    Route::post('guardar',[FrutaController::class,'guardar']);
+//    Route::get('eliminar/{id}',[FrutaController::class,'eliminar']);
+//    Route::get('editar/{id}',[FrutaController::class,'editar']);
+//    Route::post('update',[FrutaController::class,'update']);
+// });
