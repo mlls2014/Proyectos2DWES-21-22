@@ -129,10 +129,14 @@ Route::get('/libros/{genero?}', function ($genero = null) {
 // ));
 
 // Route::get('/saludo', function () {
-//    return view('Inicio', [
+//    return view('inicio', [
 //       'nombre' => 'Pepe'
 //    ]);
 // });
+
+Route::get('/saludo', function () {
+   return view('inicio')->with('nombre', 'Pepe');
+});
 
 // Route::get('/listado-peliculas', function () {
 //    $titulo = 'Listado de películas';
@@ -145,17 +149,18 @@ Route::get('/libros/{genero?}', function ($genero = null) {
 //    return view('body');
 // });
 
-// Route::get('/listado-peliculas', function () {
-//    $titulo = 'Listado de películas';
-//    $listado = array('Batman', 'Spiderman', 'Gran Torino');
-//    return view('peliculas.listado')
-//       ->with('titulo', $titulo)
-//       ->with('listado', $listado);
-// });
+Route::get('/listado-peliculas', function () {
+   $titulo = 'Listado de películas';
+   $listado = array('Batman', 'Spiderman', 'Gran Torino');
+   return view('peliculas.listado')
+      ->with('titulo', $titulo)
+      ->with('listado', $listado);
+});
 
 // Route::get('/pagina-generica', function(){
 //    return view('pagina');
 // });
+
 
 // CONTROLADORES
 // use App\Http\Controllers\PeliculaController;

@@ -1,45 +1,56 @@
 @include('includes.header')
 <!-- IMPRIMIR POR PANTALLA -->
-<!-- <h1><?= $titulo ?></h1>
-<h2><?= $listado[2] ?></h2> -->
-<h1>{{ $titulo }}</h1>
-<h2>{{ $listado[2] }}</h2>
-<p>{{ date('Y') }}
+<h1><?= $titulo ?></h1>
+<h2><?= $listado[2] ?></h2>
+{{-- <h1>{{ $titulo }}</h1> --}}
+{{-- <h2>{{ $listado[2] }}</h2> --}}
+{{-- <p>{{ date('Y') }} --}}
 
 <!-- COMETARIOS -->
 {{--Esto es un comentario blade--}}
 
 <!-- MOSTRAR SI EXISTE -->
-{{ $director ?? 'No hay director' }}
+{{-- {{ $director ?? 'No hay director' }} --}}
 
 <!-- CONDICIONALES -->
 
-@if ($titulo && count($listado) >= 5)
+{{-- @if ($titulo && count($listado) >= 5)
 El titulo existe y es este {{ $titulo }} y el listado es mayor a 5 ({{count($listado)}})
 @elseif($titulo)
 El título existe y es este {{ $titulo }} y el listado no es mayor a 5 ({{count($listado)}})
 @else
 El titulo no existe
-@endif
+@endif --}}
+
+{{-- @isset($registros)
+//$registros está definida y no es nula...
+ <h1> registro existe </h1>
+@else
+ <h1> registro no existe </h1>
+@endisset --}}
+
+
 <hr/>
+
 <!-- BUCLES -->
-@for($i=1;$i<=10;$i++)
+{{-- @for($i=1;$i<=10;$i++)
    El número es {{$i}} <br/>
 @endfor
 
-<hr/>
-<?php $cont=1;?>
+<hr/> --}}
+
+{{-- <?php $cont=1;?>
 @while($cont<50)
    @if($cont%2 == 0)
       Número PAR: {{ $cont}} <br/>
    @endif
    <?php $cont++; ?>
 @endwhile
-<hr/>
+<hr/> --}}
 
-@foreach ($listado as $pelicula)
+{{-- @foreach ($listado as $pelicula)
    <p>{{$pelicula}}</p>
-@endforeach
+@endforeach  --}}
 
 
 @include('includes.footer')
