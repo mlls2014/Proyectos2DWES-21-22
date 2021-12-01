@@ -1,26 +1,33 @@
-@include('includes.header')
+<!-- @include('includes.header') -->
 <!-- IMPRIMIR POR PANTALLA -->
-<h1><?= $titulo ?></h1>
-<h2><?= $listado[2] ?></h2>
-{{-- <h1>{{ $titulo }}</h1> --}}
-{{-- <h2>{{ $listado[2] }}</h2> --}}
-{{-- <p>{{ date('Y') }} --}}
+<!-- <h1><?= $titulo ?></h1>
+<h2><?= $listado[2] ?></h2> -->
 
-<!-- COMETARIOS -->
-{{--Esto es un comentario blade--}}
+
+
+
+<h1>{{ $titulo }}</h1>
+<h2>{{ $listado[2] }}</h2>
+<p>{{ date('Y') }}
+
+{{-- <!-- COMETARIOS --> --}}
+{{-- Esto es un comentario blade --}}
 
 <!-- MOSTRAR SI EXISTE -->
-{{-- {{ $director ?? 'No hay director' }} --}}
+{{ $director ?? 'No hay director' }}
 
 <!-- CONDICIONALES -->
 
-{{-- @if ($titulo && count($listado) >= 5)
+@if ($titulo && count($listado) >= 5)
 El titulo existe y es este {{ $titulo }} y el listado es mayor a 5 ({{count($listado)}})
 @elseif($titulo)
-El título existe y es este {{ $titulo }} y el listado no es mayor a 5 ({{count($listado)}})
+<hr>
+<p>El título existe y es este {{ $titulo }} y el listado
+    no es mayor a 5 ({{count($listado)}})</p>
+<hr>
 @else
 El titulo no existe
-@endif --}}
+@endif
 
 {{-- @isset($registros)
 //$registros está definida y no es nula...
@@ -30,7 +37,7 @@ El titulo no existe
 @endisset --}}
 
 
-<hr/>
+<!-- <hr/> -->
 
 <!-- BUCLES -->
 {{-- @for($i=1;$i<=10;$i++)
@@ -53,4 +60,4 @@ El titulo no existe
 @endforeach  --}}
 
 
-@include('includes.footer')
+<!-- @include('includes.footer') -->

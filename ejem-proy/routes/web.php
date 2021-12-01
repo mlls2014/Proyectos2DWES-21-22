@@ -83,11 +83,12 @@ Route::get('/libros/{genero?}', function ($genero = null) {
 //    ));
 // });
 
-// Route::get('/pelicula', function () {
-//    return view('pelicula', array(
-//       'titulo' => 'home'
-//    ));
-// });
+Route::get('/pelicula', function () {
+   return view('pelicula', array(
+      'titulo' => 'home',
+      'anyo' => '2021',
+   ));
+});
 
 // Route::get('/pelicula/{titulo}', function ($titulo) {
 //    return view('pelicula', array(

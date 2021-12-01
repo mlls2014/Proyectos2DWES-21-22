@@ -7,6 +7,6 @@
 <body>
 	<h1>Vista: "Inicio"</h1>
    <p>Esta es mi primera vista en Laravel :) </p>
-   <p>Hola <?= $nombre; ?> </p>
+   <p>Hola <?php echo $nombre; ?> </p>
 </body>
 </html>
