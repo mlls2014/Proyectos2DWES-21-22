@@ -10,7 +10,13 @@ class FrutaController extends Controller
 {
    public function index()
    {
+      // Este ejemplo utiliza la forma más simple de acceder a una base de datos: el Facades DB https://laravel.com/api/8.x/Illuminate/Support/Facades/DB.html
+      // La siguiente forma para acceder a un BD sería los query builder https://laravel.com/docs/8.x/queries
+      // La forma más evoucionada sería mediante Eloquent ORM https://laravel.com/docs/8.x/eloquent 
       $frutas = DB::select('select * from frutas order by id desc');
+      // Otra forma de hacerlo, aunque esta vez devuelve unz colección del tipo Illuminate\Support\Collection en vex de un array
+      // El uso es similar
+      // $frutas = DB::table('frutas')->get();
 
       return view('fruta.index', ['frutas' => $frutas]);
    }
