@@ -166,11 +166,8 @@ Route::get('/listado-peliculas', function () {
 
 // CONTROLADORES
 use App\Http\Controllers\PeliculaController;
-<<<<<<< HEAD
 
 // Route::get('/peliculas', [PeliculaController::class, 'index']);
-=======
->>>>>>> 04652149159e314d4feb1421724cbf747e900287
 
 Route::get('/peliculas', [PeliculaController::class, 'index']);
 
@@ -216,7 +213,6 @@ Route::post('/recibir', [PeliculaController::class,'recibir'])->name('df');
 
 use App\Http\Controllers\FrutaController;
 
-<<<<<<< HEAD
 // Route::prefix('frutas')->group(function () {
 //    Route::get('index',[FrutaController::class,'index']);
 //    Route::get('detalle/{id}', [FrutaController::class, 'detalle']);
@@ -227,14 +223,3 @@ use App\Http\Controllers\FrutaController;
 //    Route::post('update',[FrutaController::class,'update']);
 // });
 
-=======
-Route::prefix('frutas')->group(function () {
-   Route::get('index',[FrutaController::class,'index']);
-   Route::get('detalle/{id}', [FrutaController::class, 'detalle']);
-   Route::get('crear',[FrutaController::class,'crear']);
-   Route::post('guardar',[FrutaController::class,'guardar']);
-   Route::get('eliminar/{id}',[FrutaController::class,'eliminar']);
-   Route::get('editar/{id}',[FrutaController::class,'editar']);
-   Route::post('update',[FrutaController::class,'update']);
-});
->>>>>>> 04652149159e314d4feb1421724cbf747e900287
