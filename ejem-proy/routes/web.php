@@ -166,9 +166,13 @@ Route::get('/listado-peliculas', function () {
 
 // CONTROLADORES
 use App\Http\Controllers\PeliculaController;
+<<<<<<< HEAD
 
 // Route::get('/peliculas', [PeliculaController::class, 'index']);
+=======
+>>>>>>> 04652149159e314d4feb1421724cbf747e900287
 
+Route::get('/peliculas', [PeliculaController::class, 'index']);
 
 
 /**
@@ -176,13 +180,13 @@ use App\Http\Controllers\PeliculaController;
  */
 // Route::get('/peliculas','App\Http\Controllers\PeliculaController@index');
 
-// Route::get('/peliculas/{pagina?}', [PeliculaController::class, 'index']);
+Route::get('/peliculas/{pagina?}', [PeliculaController::class, 'index']);
 
 
 // RESOURCES
-// use App\Http\Controllers\FotoController;
-// Route::get('/foto/popular',[FotoController::class, 'getPopular']);
-// Route::resource('foto',FotoController::class);
+use App\Http\Controllers\FotoController;
+Route::get('/foto/popular',[FotoController::class, 'getPopular']);
+Route::resource('foto',FotoController::class);
 
 // use App\Http\Controllers\UsuarioController;
 
@@ -190,13 +194,13 @@ use App\Http\Controllers\PeliculaController;
 // Route::resource('usuarios', UsuarioController::class)->names([
 //    'create' => 'usuarios.build'
 // ]);
-// // Route::get('/detalle',[PeliculaController::class,'detalle']);
+Route::get('/detalle',[PeliculaController::class,'detalle']);
 // // Para dar nombre a esa ruta
-// Route::get('/detalle/{year?}', [PeliculaController::class, 'detalle'])
-//    ->name('detalle.pelicula')
-//    ->middleware('testyear');
+Route::get('/detalle/{year?}', [PeliculaController::class, 'detalle'])
+   ->name('detalle.pelicula')
+   ->middleware('testyear');
 
-// Route::get('/redirigir', [PeliculaController::class, 'detalle']);
+Route::get('/redirigir', [PeliculaController::class, 'redirigir']);
 
 // Route::get('/detalle',[
 //    'uses' => [PeliculaController::class,'detalle'],
@@ -210,8 +214,9 @@ Route::post('/recibir', [PeliculaController::class,'recibir'])->name('df');
 
 // BASE DE DATOS
 
-// use App\Http\Controllers\FrutaController;
+use App\Http\Controllers\FrutaController;
 
+<<<<<<< HEAD
 // Route::prefix('frutas')->group(function () {
 //    Route::get('index',[FrutaController::class,'index']);
 //    Route::get('detalle/{id}', [FrutaController::class, 'detalle']);
@@ -222,3 +227,14 @@ Route::post('/recibir', [PeliculaController::class,'recibir'])->name('df');
 //    Route::post('update',[FrutaController::class,'update']);
 // });
 
+=======
+Route::prefix('frutas')->group(function () {
+   Route::get('index',[FrutaController::class,'index']);
+   Route::get('detalle/{id}', [FrutaController::class, 'detalle']);
+   Route::get('crear',[FrutaController::class,'crear']);
+   Route::post('guardar',[FrutaController::class,'guardar']);
+   Route::get('eliminar/{id}',[FrutaController::class,'eliminar']);
+   Route::get('editar/{id}',[FrutaController::class,'editar']);
+   Route::post('update',[FrutaController::class,'update']);
+});
+>>>>>>> 04652149159e314d4feb1421724cbf747e900287
