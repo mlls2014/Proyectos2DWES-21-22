@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CourseController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -48,7 +49,7 @@ Route::get('posts/{post_id}/comments/{comment_id}', function ($postId, $commentI
 
 Route::get('/libros/{genero?}', function ($genero = null) {
    if ($genero == null) {
-      return view('libros'); //muestra la lista 
+      return view('libros'); //muestra la lista
    }
    return "Lista de libros del género: {$genero}";
 });
@@ -96,7 +97,7 @@ Route::get('/pelicula', function () {
 //    ));
 // });
 
-// Route::get('/pelicula/{titulo?}', 
+// Route::get('/pelicula/{titulo?}',
 //  function($titulo='No se especificó una película'){
 //  return view('pelicula', array(
 //              'titulo' => $titulo  ));
@@ -164,14 +165,14 @@ Route::get('/listado-peliculas', function () {
 
 
 // CONTROLADORES
-// use App\Http\Controllers\PeliculaController;
+use App\Http\Controllers\PeliculaController;
 
 // Route::get('/peliculas', [PeliculaController::class, 'index']);
 
 
 
 /**
- * ¡Ojo! Cambio en la forma de llamar a los controladores en Laravel 8. 
+ * ¡Ojo! Cambio en la forma de llamar a los controladores en Laravel 8.
  */
 // Route::get('/peliculas','App\Http\Controllers\PeliculaController@index');
 
@@ -202,10 +203,10 @@ Route::get('/listado-peliculas', function () {
 //    'as'   => 'detalle.pelicula'
 // ]);
 
-// FORMULARIOS 
+// FORMULARIOS
 
-// Route::get('/formulario', [PeliculaController::class,'formulario']);
-// Route::post('/recibir', [PeliculaController::class,'recibir']);
+Route::get('/formulario', [PeliculaController::class,'formulario']);
+Route::post('/recibir', [PeliculaController::class,'recibir'])->name('df');
 
 // BASE DE DATOS
 
@@ -220,3 +221,4 @@ Route::get('/listado-peliculas', function () {
 //    Route::get('editar/{id}',[FrutaController::class,'editar']);
 //    Route::post('update',[FrutaController::class,'update']);
 // });
+
