@@ -23,4 +23,7 @@ Route::prefix('cursos')->group(function () {
     Route::get('/{id}/destroy', [CourseController::class,'destroy']);  //   /cursos/3/destroy
     Route::get('/{id}/edit', [CourseController::class,'edit']);  //   /cursos/2/edit
     Route::get('/create', [CourseController::class,'create']);  //   /cursos/create
+    Route::get('/{id}/show', [CourseController::class,'show']);  //   /cursos/2/show
+    Route::post('/store', [CourseController::class,'store']);  //   /cursos/store
+    Route::post('/{id}/update', [CourseController::class,'update']);  //   /cursos/update
 });

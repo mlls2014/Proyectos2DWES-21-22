@@ -3,101 +3,107 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CourseController extends Controller
 {
-    private $courses = [[
-        'id' => 0,
-        'nombre' => 'PHP',
-        'descripcion' => 'Avanzado',
-        'precio' => 10
-    ],
-    [
-        'id' => 1,
-        'nombre' => 'C++',
-        'descripcion' => 'Básico',
-        'precio' => 12
-    ],
-    [
-        'id' => 2,
-        'nombre' => 'Java',
-        'descripcion' => 'Medio',
-        'precio' => 14
-    ]];
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return view('courses.index', ['courses' => $this->courses]);
-    }
+   private $courses;
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('courses.alta');
-    }
+   function __construct()
+   {
+      // parent::__construct();
+      $this->courses = Storage::disk('local')->get('cursos.json');
+      $this->courses = json_decode($this->courses,true); // Al decodificar el json Los objetos son transformados en arrays asociativos
+   }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+   /**
+    * Display a listing of the resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
+   public function index()
+   {
+      return view('courses.index', ['courses' => $this->courses]);
+   }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        return view('courses.alta');
-    }
+   /**
+    * Show the form for creating a new resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
+   public function create()
+   {
+      return view('courses.alta')->with('course',null)->with('tipo','Alta');
+   }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        return "Editando " . implode(' ' , $this->courses[$id]);
-    }
+   /**
+    * Store a newly created resource in storage.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @return \Illuminate\Http\Response
+    */
+   public function store(Request $request)
+   {
+      $this->courses[] = [ "id" => array_key_last ($this->courses)+1, // Siempre el id debe ser la key en el array
+      "nombre" => $request->input('nombre'), 
+      "descripcion" => $request->input('descripcion'),
+      "precio" => $request->input('precio') ];
+      return redirect ('/cursos');
+   }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+   /**
+    * Display the specified resource.
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
+   public function show($id)
+   {
+      return "Mostrando el curso de id $id: " . $this->courses[$id]->nombre . ' ' . $this->courses[$id]->descripcion . ' ' . $this->courses[$id]->precio;
+   }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        return "Eliminando " . implode(' ' , $this->courses[$id]);
-    }
+   /**
+    * Show the form for editing the specified resource.
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
+   public function edit($id)
+   {
+      return view('courses.alta')->with('tipo','Editar')->with('course',$this->courses[$id]);
+   }
+
+   /**
+    * Update the specified resource in storage.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
+   public function update(Request $request, $id)
+   {
+      $this->courses[$id]['nombre'] = $request->input('nombre');
+      $this->courses[$id]['descripcion'] = $request->input('descripcion');
+      $this->courses[$id]['precio'] = $request->input('precio');
+      return redirect ('/cursos');
+   }
+
+   /**
+    * Remove the specified resource from storage.
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
+   public function destroy($id)
+   {
+      unset($this->courses["$id"]);
+      return redirect ('/cursos');
+   }
+
+   function __destruct()
+   {
+      $cursos = json_encode($this->courses);
+      $this->courses = Storage::disk('local')->put('cursos.json', $cursos);
+   }
 }
