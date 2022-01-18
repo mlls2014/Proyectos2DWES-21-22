@@ -32,5 +32,8 @@ class DatabaseSeeder extends Seeder
       // Lo ideal sería crear una Clase para implementar todo el código necesario para el seed de la tabla cursos
       // php artisan make:seeder CursoSeeder
 
+      // Para llenar la tabla Curso con 50 registros creados mediante un factory
+      Curso::factory(50)->create();  // Se puede hacer aquí o en el Seeder
+
    }
 }

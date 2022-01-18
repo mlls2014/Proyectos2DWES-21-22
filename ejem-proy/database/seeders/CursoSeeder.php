@@ -23,6 +23,8 @@ class CursoSeeder extends Seeder
       // $curso->precio = 2;
       // $curso->save();
 
-      // Peor lo ideal sería utilizar objetos de tipo Factory
+      // Pero lo ideal sería utilizar objetos de tipo Factory
+       // Para llenar la tabla Curso con 50 registros creados mediante un factory
+      //  Curso::factory(50)->create();
    }
 }
