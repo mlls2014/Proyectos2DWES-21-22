@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
+use function PHPUnit\Framework\isEmpty;
+use function PHPUnit\Framework\isNull;
+
 class CourseController extends Controller
 {
 
@@ -14,7 +17,7 @@ class CourseController extends Controller
    {
       // parent::__construct();
       $this->courses = Storage::disk('local')->get('cursos.json');
-      $this->courses = json_decode($this->courses,true); // Al decodificar el json Los objetos son transformados en arrays asociativos
+      $this->courses = json_decode($this->courses, true); // Al decodificar el json Los objetos son transformados en arrays asociativos
    }
 
    /**
@@ -34,7 +37,7 @@ class CourseController extends Controller
     */
    public function create()
    {
-      return view('courses.alta')->with('course',null)->with('tipo','Alta');
+      return view('courses.alta')->with('course', null)->with('tipo', 'Alta');
    }
 
    /**
@@ -45,11 +48,13 @@ class CourseController extends Controller
     */
    public function store(Request $request)
    {
-      $this->courses[] = [ "id" => array_key_last ($this->courses)+1, // Siempre el id debe ser la key en el array
-      "nombre" => $request->input('nombre'), 
-      "descripcion" => $request->input('descripcion'),
-      "precio" => $request->input('precio') ];
-      return redirect ('/cursos');
+      $this->courses[] = [
+         "id" => is_null(array_key_last($this->courses)) ? 0 : (array_key_last($this->courses) + 1), // Siempre el id debe ser la key en el array
+         "nombre" => $request->input('nombre'),
+         "descripcion" => $request->input('descripcion'),
+         "precio" => $request->input('precio')
+      ];
+      return redirect('/cursos');
    }
 
    /**
@@ -71,7 +76,7 @@ class CourseController extends Controller
     */
    public function edit($id)
    {
-      return view('courses.alta')->with('tipo','Editar')->with('course',$this->courses[$id]);
+      return view('courses.alta')->with('tipo', 'Editar')->with('course', $this->courses[$id]);
    }
 
    /**
@@ -86,7 +91,7 @@ class CourseController extends Controller
       $this->courses[$id]['nombre'] = $request->input('nombre');
       $this->courses[$id]['descripcion'] = $request->input('descripcion');
       $this->courses[$id]['precio'] = $request->input('precio');
-      return redirect ('/cursos');
+      return redirect('/cursos');
    }
 
    /**
@@ -98,7 +103,7 @@ class CourseController extends Controller
    public function destroy($id)
    {
       unset($this->courses["$id"]);
-      return redirect ('/cursos');
+      return redirect('/cursos');
    }
 
    function __destruct()
