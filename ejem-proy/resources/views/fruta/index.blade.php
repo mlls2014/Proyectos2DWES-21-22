@@ -7,6 +7,6 @@
 @endif
 <ul>
   @foreach($frutas as $fruta)
-   <li><a href="{{ url('/frutas/detalle', [$fruta->id]) }}"> {{ $fruta->nombre }} </a> </li>
+   <li><a href="{{ url('/frutas/detalle', [$fruta->id]) }}"> {{ $fruta->nombre }} {{ $fruta->precio }} </a> </li>
   @endforeach
 </ul>
