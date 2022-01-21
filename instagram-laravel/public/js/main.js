@@ -1,5 +1,5 @@
 // ¡¡Ojo!! Esto debe cambiarse cuando se instale la app
-var url = 'http://localhost/source/Eva2/instagram-laravel/public';
+var url = 'http://localhost/Proyectos2DWES-21-22/instagram-laravel/public';
 
 window.addEventListener("load", function () {
 
