@@ -1,0 +1,27 @@
+{
+   "version": "2.0.0",
+   "tasks": [
+      {
+         "label": "Brave",
+         "type": "process",
+         "command": "brave.exe",
+         "windows": {
+            "command": "C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe"
+         },
+         "args": [
+            "localhost/source/Eva2/instagram-laravel/${relativeFile}"
+         ],
+         "problemMatcher": []
+      }
+   ]
+}
+/*
+// En keybindings.json para asignar teclas a la tareas
+[
+    {
+    "key": "ctrl+g",
+    "command": "workbench.action.tasks.runTask",
+    "args": "Brave"
+    }
+]
+*/
