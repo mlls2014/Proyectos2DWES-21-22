@@ -18,7 +18,7 @@ class CreateFrutasTable extends Migration
             $table->string('nombre');
             $table->string('descripcion')->nullable();
             $table->double('precio')->default(0);
-            $table->timestamp('fecha');
+            $table->date('fecha');
             $table->timestamps();
         });
     }
