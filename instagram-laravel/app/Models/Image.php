@@ -45,4 +45,19 @@ class Image extends Model
       // por lo que no sería necesario especificar este segundo parámetro
       return $this->belongsTo(User::class, 'user_id');
    }
+
+   /**
+    * Podemos, si es necesaria para nuestro proyecto, implementar la relación Many to Many que existe entre users e images
+    * En este caso son dos relaciones construidas en las tablas likes y comments
+    * 
+    */
+    public function commentOwners()
+    {
+        return $this->belongsToMany(User::class, 'comments', 'image_id', 'user_id');
+    }
+
+    public function likesOwners()
+    {
+        return $this->belongsToMany(User::class, 'likes', 'image_id', 'user_id');
+    }
 }
