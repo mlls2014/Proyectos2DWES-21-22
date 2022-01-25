@@ -66,4 +66,27 @@ class User extends Authenticatable
       // Este método devuelve el array de objetos con los comments asociados a un usuario 
       return $this->hasMany(Comment::class);
    }
+
+   //Definimos la relación Uno a Uno  con la tabla Phones. hasOne sirve para acceder al registro de phones asociado al usuario. Se 
+   //supone que en la tabla phones existe un campo user_id fireng key a users
+   public function phone()
+   {
+       return $this->hasOne(Phone::class);
+   }
+
+   /**
+    * Podemos, si es necesaria para nuestro proyecto, implementar la relación Many to Many que existe entre users e images
+    * En este caso son dos relaciones construidas en las tablas likes y comments
+    * 
+    */
+    public function commentImages()
+    {
+        return $this->belongsToMany(Image::class, 'comments', 'user_id', 'image_id')->withPivot('content', 'created_at');
+        // withPivot sirve para poder acceder a los campos propios de la tabla n:m en este caso comments
+    }
+
+    public function likeImages()
+    {
+        return $this->belongsToMany(Image::class, 'likes', 'user_id', 'image_id');
+    }
 }
