@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Fruta extends Model
 {
     use HasFactory;
+
+    // protected $table = 'frutas';
+    // protected $primaryKey = 'id';
+
 }
