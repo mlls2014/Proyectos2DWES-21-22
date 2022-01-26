@@ -40,7 +40,7 @@ class Image extends Model
    public function user()
    {
       // Este método devuelve el objeto Usuario que ha creado la imagen
-      // El segundo parámetro sirve para indicar el nombre del campo clave ajena que hace referencia 
+      // El segundo parámetro sirve para indicar el nombre del campo clave ajena que hace referencia
       // a la tabla users en la tabla images. Por defecto Eloquent considera que es user_id (nombretabla_id)
       // por lo que no sería necesario especificar este segundo parámetro
       return $this->belongsTo(User::class, 'user_id');
@@ -49,11 +49,11 @@ class Image extends Model
    /**
     * Podemos, si es necesaria para nuestro proyecto, implementar la relación Many to Many que existe entre users e images
     * En este caso son dos relaciones construidas en las tablas likes y comments
-    * 
+    *
     */
     public function commentOwners()
     {
-        return $this->belongsToMany(User::class, 'comments', 'image_id', 'user_id');
+        return $this->belongsToMany(User::class, 'comments', 'image_id', 'user_id')->withPivot('content');
     }
 
     public function likesOwners()
