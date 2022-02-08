@@ -18,9 +18,9 @@ class UserController extends Controller
    public function __construct()
    {
       //Garantiza que los métodos del controlador sean con usuario autenticado. Esto se puede hacer también en la ruta
-      $this->middleware('auth');   
+      $this->middleware('auth');
    }
-   
+
    public function config()
    {
       return view('user.config');
@@ -29,7 +29,7 @@ class UserController extends Controller
    public function update(Request $request)
    {
       $user = User::find(Auth::user()->id);
-      
+
       $request->validate([
          'name' => 'required|string|max:255',
          'surname' => 'required|string|max:255',
@@ -38,7 +38,7 @@ class UserController extends Controller
          'password' => 'required|string|confirmed|min:1',
       ]);
 
-      
+
       //Subir la imagen
       $image= $request->file('image');
       // Si recibimos un objeto imagen tendremos que utilizar el disco para almacenarla
@@ -49,8 +49,8 @@ class UserController extends Controller
          // Seleccionamos el disco virtual users, extraemos el fichero de la carpeta temporal
          // donde se almacenó y guardamos la imagen recibida con el nombre generado
          Storage::disk('users')->put($image_name, File::get($image));
-         $user->image = $image_name;   
-      }   
+         $user->image = $image_name;
+      }
       $user->name = $request->name;
       $user->surname = $request->surname;
       $user->nick = $request->nick;
@@ -68,7 +68,7 @@ class UserController extends Controller
     * @param [type] $filename
     * @return void
     */
-   public function getImage($filename){     
+   public function getImage($filename){
       $file = Storage::disk('users')->get($filename);
       return new Response($file, 200);
    }
