@@ -7,6 +7,7 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\Controller;
 
 use App\Helpers\FormatTime;
 
@@ -64,7 +65,7 @@ Route::get('/likes/delete/{image_id}', [LikeController::class,'dislike'])->name(
 
 Route::get('/likes', [LikeController::class,'index'])->name('likes.index');
 
-
+Route::get('/prueba',[Controller::class,'prueba'])->name('prueba');
 
 
 
@@ -112,7 +113,7 @@ Route::get('/likes', [LikeController::class,'index'])->name('likes.index');
 //       echo $image->image_path  . "<br/>";
 //       echo $image->description  . "<br/>";
 //       echo $image->user->name  . ' ' .  $image->user->surname;
-//       // Añadimos un bucle para recorrer los comentarios de la imagen 
+//       // Añadimos un bucle para recorrer los comentarios de la imagen
 //       if (count($image->comments) >= 1) {
 //          echo '<br/>' . '<strong>Comentarios</strong>';
 //          echo '<ul>';
