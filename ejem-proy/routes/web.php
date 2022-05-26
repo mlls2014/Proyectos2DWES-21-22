@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\PeliculaController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -56,22 +57,22 @@ Route::get('/libros/{genero?}', function ($genero = null) {
 
 
 
-// Route::get('user/{id}', function ($id) {
-//    return $id;
-// })->where(['id' => '[\d]+']);
+Route::get('user/{id}', function ($id) {
+   return $id;
+})->where(['id' => '[\d]+']);
 
-// Route::get('user/{op}', function ($op) {
-//    return $op;
-// })->where(['op' => 'create|delete|update']);
+Route::get('user/{op}', function ($op) {
+   return $op;
+})->where(['op' => 'create|delete|update']);
 
-// Route::get('user/{name}', function ($name) {
-//    return "El nombre es " . $name;
-// })->where(['name' => '[-\w]+']);
+Route::get('user/{name}', function ($name) {
+   return "El nombre es " . $name;
+})->where(['name' => '[-\w]+']);
 
-// Route::get('/mostrar-fecha', function () {
-//    echo "<b>Fecha actual:</b>" . date('d-m-Y');
-//    echo "<br/><a href='/'>Inicio</a>";
-// });
+Route::get('/mostrar-fecha', function () {
+   echo "<b>Fecha actual:</b>" . date('d-m-Y');
+   echo "<br/><a href='/'>Inicio</a>";
+});
 
 // Route::get('/mostrar-fecha', function () {
 //    return view('mostrar-fecha');
@@ -114,38 +115,38 @@ Route::get('/pelicula', function () {
 //    'titulo' => '[a-z]+'
 // ));
 
-// Route::get(
-//    '/pelicula/{titulo}/{anyo?}',
-//    function (
-//       $titulo = 'No se especificó una película',
-//       $anyo = 2019
-//    ) {
-//       return view('pelicula', array(
-//          'titulo' => $titulo,
-//          'anyo'   => $anyo
-//       ));
-//    }
-// )->where(array(
-//    'titulo' => '[a-z]+',
-//    'anyo'   => '[0-9]+'
-// ));
+Route::get(
+   '/pelicula/{titulo}/{anyo?}',
+   function (
+      $titulo = 'No se especificó una película',
+      $anyo = 2019
+   ) {
+      return view('pelicula', array(
+         'titulo' => $titulo,
+         'anyo'   => $anyo
+      ));
+   }
+)->where(array(
+   'titulo' => '[a-z]+',
+   'anyo'   => '[0-9]+'
+));
 
-// Route::get('/saludo', function () {
-//    return view('inicio', [
-//       'nombre' => 'Pepe'
-//    ]);
-// });
+Route::get('/saludo', function () {
+   return view('inicio', [
+      'nombre' => 'Pepe'
+   ]);
+});
 
 Route::get('/saludo', function () {
    return view('inicio')->with('nombre', 'Pepe');
 });
 
-// Route::get('/listado-peliculas', function () {
-//    $titulo = 'Listado de películas';
-//    return view('peliculas.listado', array(
-//       'titulo' => $titulo
-//    ));
-// });
+Route::get('/listado-peliculas', function () {
+   $titulo = 'Listado de películas';
+   return view('peliculas.listado', array(
+      'titulo' => $titulo
+   ));
+});
 
 // Route::get('/includes',function(){
 //    return view('body');
@@ -165,7 +166,7 @@ Route::get('/listado-peliculas', function () {
 
 
 // CONTROLADORES
-use App\Http\Controllers\PeliculaController;
+
 
 // Route::get('/peliculas', [PeliculaController::class, 'index']);
 
